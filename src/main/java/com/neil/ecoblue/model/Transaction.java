@@ -12,15 +12,17 @@ public class Transaction {
     private Date transactionDate;
     private int qty;
     private double transactionValue;
-    @OneToOne(optional = true, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Account account;
+    //Naka optional to kasi pag yung transaction is redeem walang item na kasama
     @OneToOne(fetch = FetchType.LAZY, optional = true)
     private Item item;
+    //same sa item
     @OneToOne(fetch = FetchType.LAZY, optional = true)
     private Redeem redeem;
 
     public Transaction(){}
-
+    //constructor sa pag convert ng item
     public Transaction(Account account, Item item, int qty, double transactionValue) {
         this.account = account;
         this.qty = qty;
@@ -29,7 +31,7 @@ public class Transaction {
         this.item = item;
         this.transactionType = 1;
     }
-
+    //constructor sa pag redeem ng item
     public Transaction(Account account, Redeem redeem, int qty, double transactionValue) {
         this.account = account;
         this.qty = qty;

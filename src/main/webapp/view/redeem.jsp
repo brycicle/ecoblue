@@ -1,10 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.neil.ecoblue.model.Account" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.neil.ecoblue.model.Redeem" %>
 <%
     Account account = (Account) session.getAttribute("account");
-    List<Redeem> list = (List<Redeem>)request.getAttribute("items");
 %>
 <!doctype html>
 <html lang="en">
@@ -30,7 +27,7 @@
                 <a class="nav-link" href="/convert">Convert</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/redeem">Redeem</a>
+                <a class="nav-link active" href="/redeem">Redeem</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/history">History</a>

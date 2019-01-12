@@ -1,10 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.neil.ecoblue.model.Account" %>
-<%@ page import="com.neil.ecoblue.model.Item" %>
-<%@ page import="java.util.List" %>
 <%
     Account account = (Account) session.getAttribute("account");
-    List<Item> list = (List<Item>)request.getAttribute("items");
 %>
 <!doctype html>
 <html lang="en">
@@ -27,7 +24,7 @@
     <div id="my-nav" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/convert">Convert</a>
+                <a class="nav-link active" href="/convert">Convert</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/redeem">Redeem</a>
@@ -82,7 +79,9 @@
             <h5 class="card-title">Legend</h5>
             <div class="card-body">
                 <ul class="list-group">
+                    <%--equivalent yan ng for(Item item : items)--%>
                     <c:forEach var="item" items="${items}">
+                                                                    <%-- Same sa jsp tag na <%=item.getPhpValue%>--%>
                         <li class="list-group-item itemList" value="${item.phpValue}">
                             ${item.itemName} = <span class="badge badge-pill badge-warning mr-3"><i class="fas fa-coins"></i> ${item.phpValue}</span>
                         </li>

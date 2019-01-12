@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%
     Account account = (Account) session.getAttribute("account");
+    //kailangan to ngayon kasi nag if else ako sa baba
     List<Transaction> list = (List<Transaction>)request.getAttribute("list");
 %>
 <!doctype html>
@@ -33,7 +34,7 @@
                 <a class="nav-link" href="/redeem">Redeem</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/history">History</a>
+                <a class="nav-link active" href="/history">History</a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
@@ -49,16 +50,20 @@
             <h5 class="card-title">Transaction History</h5>
             <div class="card-body">
                 <ul class="list-group">
+                    <%--For Loop para sa transaction history--%>
                     <% for(Transaction transaction : list){%>
                     <li class="list-group-item">
+                        <%--Naka hiwalay kasi null yung item sa redeem type and null naman redeem sa convert type--%>
+                        <%--IF transaction Type ==1///////CONVERT TYPE TRANSACTION--%>
                         <% if(transaction.getTransactionType()==1){%>
-                        <%=transaction.getTransactionDate()%>  x<%=transaction.getQty()%> <b class="badge badge-pill badge-warning">
-                        <i class="fas fa-coins"></i><%=transaction.getItem().getPhpValue()%></b> <%=transaction.getItem().getItemName()%> =
-                        <b>+</b><span class="badge badge-pill badge-success"><i class="fas fa-coins"></i><%=transaction.getTransactionValue()%></span>
+                            <%=transaction.getTransactionDate()%>  x<%=transaction.getQty()%> <b class="badge badge-pill badge-warning">
+                            <i class="fas fa-coins"></i><%=transaction.getItem().getPhpValue()%></b> <%=transaction.getItem().getItemName()%> =
+                            <b>+</b><span class="badge badge-pill badge-success"><i class="fas fa-coins"></i><%=transaction.getTransactionValue()%></span>
+                        <%--ELSE transaction Type ==2///////REDEEM TYPE TRANSACTION--%>
                         <%}else{%>
-                        <%=transaction.getTransactionDate()%>  x<%=transaction.getQty()%> <b class="badge badge-pill badge-warning">
-                        <i class="fas fa-coins"></i><%=transaction.getRedeem().getRedeemValue()%></b> <%=transaction.getRedeem().getRedeemName()%> =
-                        <b>-</b><span class="badge badge-pill badge-danger"><i class="fas fa-coins"></i><%=transaction.getTransactionValue()%></span>
+                            <%=transaction.getTransactionDate()%>  x<%=transaction.getQty()%> <b class="badge badge-pill badge-warning">
+                            <i class="fas fa-coins"></i><%=transaction.getRedeem().getRedeemValue()%></b> <%=transaction.getRedeem().getRedeemName()%> =
+                            <b>-</b><span class="badge badge-pill badge-danger"><i class="fas fa-coins"></i><%=transaction.getTransactionValue()%></span>
                         <%}%>
                     </li>
                     <%}%>
